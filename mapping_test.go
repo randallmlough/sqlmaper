@@ -2,14 +2,12 @@ package sqlmapping
 
 import (
 	"database/sql"
-	"fmt"
+	"github.com/stretchr/testify/suite"
 	"reflect"
 	"strings"
 	"sync"
 	"testing"
 	"time"
-
-	"github.com/stretchr/testify/suite"
 )
 
 var (
@@ -868,7 +866,6 @@ func (rt *reflectTest) TestAssignStructVals_withStructWithNamedAnonEmbeddedStruc
 	}
 	var ts TestStruct
 	cm, err := GetColumnMap(&ts)
-	fmt.Println(cm)
 	rt.NoError(err)
 	ns := &sql.NullString{String: "null_str1", Valid: true}
 	data := map[string]interface{}{
