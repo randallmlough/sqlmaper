@@ -375,6 +375,26 @@ func (rt *reflectTest) TestColumnRename() {
 	// it seems like a solid assumption that when people use this feature,
 	// they would simply set a renaming function once at startup,
 	// and not change between requests like this
+
+	// changing rename function
+	SetColumnRenameFunction(camelCase)
+	camelAnon := struct {
+		FirstCamel string
+		LastCamel  string
+	}{}
+	camelColumnMap, camelErr := GetColumnMap(&camelAnon)
+	rt.NoError(camelErr)
+
+	var camelKeys []string
+	for key := range camelColumnMap {
+		camelKeys = append(camelKeys, key)
+	}
+	rt.Contains(camelKeys, "first_camel")
+	rt.Contains(camelKeys, "last_camel")
+
+	// changing rename function
+	SetColumnRenameFunction(lowerCaseColumnRenameFunction)
+
 	lowerAnon := struct {
 		FirstLower string
 		LastLower  string

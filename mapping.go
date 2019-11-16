@@ -122,7 +122,10 @@ func isAnnotated() bool {
 	return annotate
 }
 
-var defaultColumnRenameFunction = strings.ToLower
+var camelCaseColumnRenameFunction = camelCase
+var lowerCaseColumnRenameFunction = strings.ToLower
+
+var defaultColumnRenameFunction = camelCaseColumnRenameFunction
 var columnRenameFunction = defaultColumnRenameFunction
 
 func SetColumnRenameFunction(newFunction func(string) string) {
