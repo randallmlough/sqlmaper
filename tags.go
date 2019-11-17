@@ -1,4 +1,4 @@
-package sqlmapping
+package sqlmaper
 
 import (
 	"reflect"
