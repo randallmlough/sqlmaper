@@ -20,7 +20,7 @@ type (
 const (
 	followTagName = "follow"
 	embedTagName  = "embed"
-	tableTagName  = "table"
+	notateTagName = "notate"
 )
 
 func IsEmptyValue(v reflect.Value) bool {
@@ -46,7 +46,7 @@ func IsEmptyValue(v reflect.Value) bool {
 var structMapCache = make(map[interface{}]ColumnMap)
 var structMapCacheLock = sync.Mutex{}
 
-// annotate will annotate an embedded struct
+// notateByDefault will dot annotate an embedded struct
 //
 // Example:
 // type EmbeddedStruct struct {
@@ -60,13 +60,13 @@ var structMapCacheLock = sync.Mutex{}
 //
 // This is true by default
 // This can be changed by calling AnnotatedByDefault(bool)
-var annotate = false
+var notateByDefault = false
 
-func AnnotatedByDefault(annotateByDefault bool) {
-	annotate = annotateByDefault
+func NotatedByDefault(notate bool) {
+	notateByDefault = notate
 }
-func isAnnotated() bool {
-	return annotate
+func isNotated() bool {
+	return notateByDefault
 }
 
 var camelCaseColumnRenameFunction = camelCase
@@ -220,7 +220,7 @@ func createColumnMap(t reflect.Type, fieldIndex []int, prefixes []string) Column
 					subColMaps = append(subColMaps, createColumnMap(f.Type, subFieldIndexes, prefixes))
 				}
 
-			} else if !implementsScanner(f.Type) && (isAnnotated() || options.Contains(tableTagName)) && !options.Contains(embedTagName) {
+			} else if !implementsScanner(f.Type) && (isNotated() || options.Contains(notateTagName)) && !options.Contains(embedTagName) {
 				subFieldIndexes := append(fieldIndex, f.Index...)
 				subPrefixes := append(prefixes, columnName)
 				var subCm ColumnMap

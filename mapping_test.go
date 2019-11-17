@@ -431,7 +431,7 @@ func (rt *reflectTest) TestAssignStructVals_withStructWithTaggedStructField() {
 		Str string
 	}
 	type TestStruct struct {
-		Embedded EmbeddedStruct `db:"embedded" scan:"table"`
+		Embedded EmbeddedStruct `db:"embedded" scan:"notate"`
 		Int      int64
 		Bool     bool
 		Valuer   *sql.NullString
@@ -461,7 +461,7 @@ func (rt *reflectTest) TestAssignStructVals_withStructWithTaggedPointerField() {
 		Str string
 	}
 	type TestStruct struct {
-		Embedded *EmbeddedStruct `db:"embedded" scan:"table"`
+		Embedded *EmbeddedStruct `db:"embedded" scan:"notate"`
 		Int      int64
 		Bool     bool
 		Valuer   *sql.NullString
@@ -486,7 +486,7 @@ func (rt *reflectTest) TestAssignStructVals_withStructWithTaggedPointerField() {
 }
 func (rt *reflectTest) TestAssignStructVals_withStructWithAnonEmbeddedStructAnnotationOff() {
 
-	AnnotatedByDefault(false)
+	NotatedByDefault(false)
 
 	type EmbeddedStruct struct {
 		Str string
@@ -517,7 +517,7 @@ func (rt *reflectTest) TestAssignStructVals_withStructWithAnonEmbeddedStructAnno
 }
 func (rt *reflectTest) TestAssignStructVals_withStructWithNamedAnonEmbeddedStructAnnotationOff() {
 
-	AnnotatedByDefault(false)
+	NotatedByDefault(false)
 
 	type EmbeddedStruct struct {
 		Str string
@@ -548,13 +548,13 @@ func (rt *reflectTest) TestAssignStructVals_withStructWithNamedAnonEmbeddedStruc
 }
 func (rt *reflectTest) TestAssignStructVals_StructWithNamedEmbeddedStructWithAnnotateTagAndAnnotationOff() {
 
-	AnnotatedByDefault(false)
+	NotatedByDefault(false)
 
 	type EmbeddedStruct struct {
 		Str string
 	}
 	type TestStruct struct {
-		EmbeddedStruct EmbeddedStruct `db:"embedded" scan:"table"`
+		EmbeddedStruct EmbeddedStruct `db:"embedded" scan:"notate"`
 		Int            int64
 		Bool           bool
 		Valuer         *sql.NullString
@@ -582,7 +582,7 @@ func (rt *reflectTest) TestAssignStructVals_StructWithNamedEmbeddedStructWithAnn
 // behavior of embedded tag is the same. Should do the exact same thing.
 func (rt *reflectTest) TestAssignStructVals_StructWithNamedEmbeddedStructWithEmbedTagAndAnnotationOff() {
 
-	AnnotatedByDefault(false)
+	NotatedByDefault(false)
 
 	type EmbeddedStruct struct {
 		Str string
@@ -613,7 +613,7 @@ func (rt *reflectTest) TestAssignStructVals_StructWithNamedEmbeddedStructWithEmb
 }
 func (rt *reflectTest) TestAssignStructVals_withStructWithNamedEmbeddedStructAnnotationOff() {
 
-	AnnotatedByDefault(false)
+	NotatedByDefault(false)
 
 	type EmbeddedStruct struct {
 		Str string
@@ -644,7 +644,7 @@ func (rt *reflectTest) TestAssignStructVals_withStructWithNamedEmbeddedStructAnn
 }
 
 func (rt *reflectTest) TestAssignStructVals_withStructWithUnNamedEmbeddedStructPointerAnnotationOff() {
-	AnnotatedByDefault(false)
+	NotatedByDefault(false)
 
 	type EmbeddedStruct struct {
 		Str string
@@ -741,7 +741,7 @@ func (rt *reflectTest) TestAssignStructVals_withStructWithEmbeddedStructWithAsIs
 		AsIs AsIsStruct `db:"as_is"`
 	}
 	type TestStruct struct {
-		Embedded EmbeddedStruct `db:"embedded" scan:"table"`
+		Embedded EmbeddedStruct `db:"embedded" scan:"notate"`
 		Int      int64
 		Bool     bool
 		Valuer   *sql.NullString
@@ -774,7 +774,7 @@ func (rt *reflectTest) TestAssignStructVals_withStructWithEmbeddedPointerStructW
 		AsIs *AsIsStruct `db:"as_is"`
 	}
 	type TestStruct struct {
-		Embedded *EmbeddedStruct `db:"embedded" scan:"table"`
+		Embedded *EmbeddedStruct `db:"embedded" scan:"notate"`
 		Int      int64
 		Bool     bool
 		Valuer   *sql.NullString
@@ -1035,7 +1035,7 @@ func (rt *reflectTest) TestGetColumnMap_withEmbeddedTaggedStruct() {
 	}
 
 	type TestStruct struct {
-		TestEmbedded `db:"test_embedded" scan:"table"`
+		TestEmbedded `db:"test_embedded" scan:"notate"`
 		Bool         bool
 		Valuer       *sql.NullString
 	}
@@ -1074,7 +1074,7 @@ func (rt *reflectTest) TestGetColumnMap_withEmbeddedTaggedStructPointer() {
 	}
 
 	type TestStruct struct {
-		*TestEmbedded `db:"test_embedded" scan:"table"`
+		*TestEmbedded `db:"test_embedded" scan:"notate"`
 		Bool          bool
 		Valuer        *sql.NullString
 	}
@@ -1113,7 +1113,7 @@ func (rt *reflectTest) TestGetColumnMap_withTaggedStructField() {
 	}
 
 	type TestStruct struct {
-		Embedded TestEmbedded `db:"test_embedded" scan:"table"`
+		Embedded TestEmbedded `db:"test_embedded" scan:"notate"`
 		Bool     bool
 		Valuer   *sql.NullString
 	}
@@ -1152,7 +1152,7 @@ func (rt *reflectTest) TestGetColumnMap_withTaggedStructPointerField() {
 	}
 
 	type TestStruct struct {
-		Embedded *TestEmbedded `db:"test_embedded" scan:"table"`
+		Embedded *TestEmbedded `db:"test_embedded" scan:"notate"`
 		Bool     bool
 		Valuer   *sql.NullString
 	}

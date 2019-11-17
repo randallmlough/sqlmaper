@@ -80,7 +80,7 @@ func (t TestInterfaceImpl) A() string {
 }
 func (rt *helperTest) SetupTest() {
 	// reset the default annotation before each test
-	AnnotatedByDefault(false)
+	NotatedByDefault(false)
 }
 
 type helperTest struct {

@@ -1,4 +1,4 @@
-module github.com/randallmlough/sqlmapping
+module github.com/randallmlough/sqlmaper
 
 go 1.12
 
